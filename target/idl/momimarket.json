@@ -1,0 +1,425 @@
+{
+  "address": "9P57wDqbVJVYWHpYQq5eYhZvcJHmCWU33np2WZi865KU",
+  "metadata": {
+    "name": "momimarket",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Momimarket - Decentralized Prediction Market"
+  },
+  "instructions": [
+    {
+      "name": "claim_reward",
+      "discriminator": [
+        149,
+        95,
+        181,
+        242,
+        94,
+        90,
+        158,
+        162
+      ],
+      "accounts": [
+        {
+          "name": "event"
+        },
+        {
+          "name": "user_participation",
+          "writable": true
+        },
+        {
+          "name": "vault",
+          "writable": true
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "create_event",
+      "discriminator": [
+        49,
+        219,
+        29,
+        203,
+        22,
+        98,
+        100,
+        87
+      ],
+      "accounts": [
+        {
+          "name": "event",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "creator",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "option_count",
+          "type": "u8"
+        },
+        {
+          "name": "fair_launch_duration",
+          "type": "i64"
+        },
+        {
+          "name": "threshold_per_option",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "finalize_fair_launch",
+      "discriminator": [
+        208,
+        179,
+        67,
+        51,
+        9,
+        254,
+        170,
+        87
+      ],
+      "accounts": [
+        {
+          "name": "event",
+          "writable": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "participate",
+      "discriminator": [
+        71,
+        30,
+        209,
+        149,
+        172,
+        95,
+        73,
+        193
+      ],
+      "accounts": [
+        {
+          "name": "event",
+          "writable": true
+        },
+        {
+          "name": "option_pool",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "user_participation",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "vault",
+          "writable": true
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "option_index",
+          "type": "u8"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "resolve_event",
+      "discriminator": [
+        184,
+        55,
+        78,
+        47,
+        114,
+        38,
+        50,
+        90
+      ],
+      "accounts": [
+        {
+          "name": "event",
+          "writable": true
+        },
+        {
+          "name": "creator",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "winning_option",
+          "type": "u8"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Event",
+      "discriminator": [
+        125,
+        192,
+        125,
+        158,
+        9,
+        115,
+        152,
+        233
+      ]
+    },
+    {
+      "name": "OptionPool",
+      "discriminator": [
+        100,
+        175,
+        136,
+        125,
+        88,
+        244,
+        169,
+        209
+      ]
+    },
+    {
+      "name": "UserParticipation",
+      "discriminator": [
+        228,
+        224,
+        93,
+        45,
+        100,
+        99,
+        161,
+        190
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidOptionCount",
+      "msg": "Invalid option count"
+    },
+    {
+      "code": 6001,
+      "name": "TitleTooLong",
+      "msg": "Title too long"
+    },
+    {
+      "code": 6002,
+      "name": "DescriptionTooLong",
+      "msg": "Description too long"
+    },
+    {
+      "code": 6003,
+      "name": "EventCancelled",
+      "msg": "Event cancelled"
+    },
+    {
+      "code": 6004,
+      "name": "EventFinalized",
+      "msg": "Event finalized"
+    },
+    {
+      "code": 6005,
+      "name": "FairLaunchEnded",
+      "msg": "Fair launch ended"
+    },
+    {
+      "code": 6006,
+      "name": "InvalidOptionIndex",
+      "msg": "Invalid option index"
+    },
+    {
+      "code": 6007,
+      "name": "InvalidAmount",
+      "msg": "Invalid amount"
+    },
+    {
+      "code": 6008,
+      "name": "FairLaunchNotEnded",
+      "msg": "Fair launch not ended"
+    },
+    {
+      "code": 6009,
+      "name": "EventNotFinalized",
+      "msg": "Event not finalized"
+    },
+    {
+      "code": 6010,
+      "name": "EventResolved",
+      "msg": "Event resolved"
+    },
+    {
+      "code": 6011,
+      "name": "NotCreator",
+      "msg": "Not creator"
+    },
+    {
+      "code": 6012,
+      "name": "EventNotResolved",
+      "msg": "Event not resolved"
+    },
+    {
+      "code": 6013,
+      "name": "RewardClaimed",
+      "msg": "Reward claimed"
+    },
+    {
+      "code": 6014,
+      "name": "NotWinner",
+      "msg": "Not winner"
+    }
+  ],
+  "types": [
+    {
+      "name": "Event",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "option_count",
+            "type": "u8"
+          },
+          {
+            "name": "fair_launch_end",
+            "type": "i64"
+          },
+          {
+            "name": "threshold_per_option",
+            "type": "u64"
+          },
+          {
+            "name": "is_finalized",
+            "type": "bool"
+          },
+          {
+            "name": "is_resolved",
+            "type": "bool"
+          },
+          {
+            "name": "is_cancelled",
+            "type": "bool"
+          },
+          {
+            "name": "winning_option",
+            "type": {
+              "option": "u8"
+            }
+          },
+          {
+            "name": "total_pool",
+            "type": "u64"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OptionPool",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "event",
+            "type": "pubkey"
+          },
+          {
+            "name": "option_index",
+            "type": "u8"
+          },
+          {
+            "name": "total_amount",
+            "type": "u64"
+          },
+          {
+            "name": "participant_count",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserParticipation",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "event",
+            "type": "pubkey"
+          },
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "option_index",
+            "type": "u8"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "reward_claimed",
+            "type": "bool"
+          }
+        ]
+      }
+    }
+  ]
+}
