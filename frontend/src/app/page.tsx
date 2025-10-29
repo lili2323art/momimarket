@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { LAMPORTS_PER_SOL, SystemProgram, Transaction } from '@solana/web3.js';
+import { BN } from '@coral-xyz/anchor';
 import { connection } from '@/lib/solana';
+import { createEvent, getAllEvents } from '@/lib/anchor';
 
 export default function Home() {
   const wallet = useWallet();
@@ -17,6 +19,9 @@ export default function Home() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [options, setOptions] = useState(['', '']);
+  const [events, setEvents] = useState<any[]>([]);
+  const [selectedEvent, setSelectedEvent] = useState<any>(null);
+  const [betAmount, setBetAmount] = useState('0.1');
 
   useEffect(() => {
     setMounted(true);
